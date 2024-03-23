@@ -57,23 +57,24 @@ def search_category_in_catalog(url: str, catalog_list: list) -> dict:
 def get_data_from_json(json_file: dict) -> list:
     """извлекаем из json данные"""
     data_list = []
-    for data in json_file['data']['products']:
-        data_list.append({
-            'id': data.get('id'),
-            'Наименование': data.get('name'),
-            'Цена': int(data.get("priceU") / 100),
-            'Цена со скидкой': int(data.get('salePriceU') / 100),
-            'Скидка': data.get('sale'),
-            'Бренд': data.get('brand'),
-            'Рейтинг': data.get('rating'),
-            'Продавец': data.get('supplier'),
-            'Рейтинг продавца': data.get('supplierRating'),
-            'Кол-во отзывов': data.get('feedbacks'),
-            'Рейтинг отзывов': data.get('reviewRating'),
-            'Промо текст карточки': data.get('promoTextCard'),
-            'Промо текст категории': data.get('promoTextCat'),
-            'Ссылка': f'https://www.wildberries.ru/catalog/{data.get("id")}/detail.aspx?targetUrl=BP'
-        })
+    if json_file is not None:
+        for data in json_file['data']['products']:
+            data_list.append({
+                'id': data.get('id'),
+                'Наименование': data.get('name'),
+                'Цена': int(data.get("priceU") / 100),
+                'Цена со скидкой': int(data.get('salePriceU') / 100),
+                'Скидка': data.get('sale'),
+                'Бренд': data.get('brand'),
+                'Рейтинг': data.get('rating'),
+                'Продавец': data.get('supplier'),
+                'Рейтинг продавца': data.get('supplierRating'),
+                'Кол-во отзывов': data.get('feedbacks'),
+                'Рейтинг отзывов': data.get('reviewRating'),
+                'Промо текст карточки': data.get('promoTextCard'),
+                'Промо текст категории': data.get('promoTextCat'),
+                'Ссылка': f'https://www.wildberries.ru/catalog/{data.get("id")}/detail.aspx?targetUrl=BP'
+            })
     return data_list
 
 
